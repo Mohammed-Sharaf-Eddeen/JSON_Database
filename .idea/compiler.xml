@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="JSON_Database.JSON_Database-task-build-classes-java.main" target="11" />
+      <module name="JSON_Database.JSON_Database-task-build-generated-sources-annotationProcessor-java.main" target="11" />
+      <module name="JSON_Database.JSON_Database-task-build-generated-sources-headers-java.main" target="11" />
+      <module name="JSON_Database.JSON_Database-task-build-reports-tests.main" target="11" />
+      <module name="JSON_Database.JSON_Database-task-build-test-results.main" target="11" />
+      <module name="JSON_Database.JSON_Database-task-build-tmp.main" target="11" />
+      <module name="JSON_Database.JSON_Database-task.main" target="11" />
+      <module name="JSON_Database.Topics-Anonymous_classes-An_anonymous_class_with_three_methods.main" target="11" />
+      <module name="JSON_Database.Topics-Anonymous_classes-Capture_variables.main" target="11" />
+      <module name="JSON_Database.Topics-Anonymous_classes-Implement_Runnable.main" target="11" />
+      <module name="JSON_Database.Topics-Anonymous_classes-Single_method.main" target="11" />
+      <module name="JSON_Database.Topics-Anonymous_classes-String_reverser.main" target="11" />
+      <module name="JSON_Database.Topics-Anonymous_classes-Theory.main" target="11" />
+      <module name="JSON_Database.Topics-Command-Forex_Broker.main" target="11" />
+      <module name="JSON_Database.Topics-Command-Remote_Controller.main" target="11" />
+      <module name="JSON_Database.Topics-Command-Stock_Broker.main" target="11" />
+      <module name="JSON_Database.Topics-Command-Theory.main" target="11" />
+      <module name="JSON_Database.Topics-Command-Undo_command.main" target="11" />
+      <module name="JSON_Database.Topics-Executors-Asynchronous_email_sending.main" target="11" />
+      <module name="JSON_Database.Topics-Executors-Messaging.main" target="11" />
+      <module name="JSON_Database.Topics-Executors-Theory.main" target="11" />
+      <module name="JSON_Database.Topics-Lambda_expressions-Creating_a_closure.main" target="11" />
+      <module name="JSON_Database.Topics-Lambda_expressions-Theory.main" target="11" />
+      <module name="JSON_Database.Topics-Thread_synchronization-Countdown_counter.main" target="11" />
+      <module name="JSON_Database.Topics-Thread_synchronization-Theory.main" target="11" />
+      <module name="JSON_Database.util.main" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
