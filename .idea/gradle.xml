@@ -18,24 +18,6 @@
             <option value="$PROJECT_DIR$/JSON Database/task/build/reports/tests" />
             <option value="$PROJECT_DIR$/JSON Database/task/build/test-results" />
             <option value="$PROJECT_DIR$/JSON Database/task/build/tmp" />
-            <option value="$PROJECT_DIR$/Topics/Anonymous classes/An anonymous class with three methods" />
-            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Capture variables" />
-            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Implement Runnable" />
-            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Single method" />
-            <option value="$PROJECT_DIR$/Topics/Anonymous classes/String reverser" />
-            <option value="$PROJECT_DIR$/Topics/Anonymous classes/Theory" />
-            <option value="$PROJECT_DIR$/Topics/Command/Forex Broker" />
-            <option value="$PROJECT_DIR$/Topics/Command/Remote Controller" />
-            <option value="$PROJECT_DIR$/Topics/Command/Stock Broker" />
-            <option value="$PROJECT_DIR$/Topics/Command/Theory" />
-            <option value="$PROJECT_DIR$/Topics/Command/Undo command" />
-            <option value="$PROJECT_DIR$/Topics/Executors/Asynchronous email sending" />
-            <option value="$PROJECT_DIR$/Topics/Executors/Messaging" />
-            <option value="$PROJECT_DIR$/Topics/Executors/Theory" />
-            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Creating a closure" />
-            <option value="$PROJECT_DIR$/Topics/Lambda expressions/Theory" />
-            <option value="$PROJECT_DIR$/Topics/Thread synchronization/Countdown counter" />
-            <option value="$PROJECT_DIR$/Topics/Thread synchronization/Theory" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>

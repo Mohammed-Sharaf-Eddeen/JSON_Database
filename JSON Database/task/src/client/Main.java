@@ -30,7 +30,7 @@ public class Main {
     static final String address = "127.0.0.1";
     static final int port = 23456;
     private static final String FOLDER_PATH  = System.getProperty("user.dir") + "\\src\\client\\data\\";
-    static Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
 
     public static void main(String[] args) throws IOException {
@@ -55,6 +55,7 @@ public class Main {
             }
         }
 
+        //Starting Connection
         Socket socket = new Socket(InetAddress.getByName(address), port);
         System.out.println("Client started!");
         DataInputStream input = new DataInputStream(socket.getInputStream());
@@ -64,12 +65,15 @@ public class Main {
         JsonObject messageToSendJSON = new JsonObject();
         messageToSendJSON.addProperty("type", type);
 
+        //choosing between key and keyJsonArray
         if (key == null) {
             messageToSendJSON.add("key", keyJsonArray);
         } else {
             messageToSendJSON.addProperty("key", key);
         }
+
         if (type.equals("set")) {
+            //choosing between key and keyJsonArray
             if (valueArrayList != null) {
                 String content = String.join(" ", valueArrayList);
                 messageToSendJSON.addProperty("value", content);
