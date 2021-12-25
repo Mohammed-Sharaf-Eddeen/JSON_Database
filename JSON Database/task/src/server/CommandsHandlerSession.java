@@ -16,7 +16,6 @@ public class CommandsHandlerSession implements Runnable {
     Socket socket;
     static final Gson gson = new Gson();
 
-
     public CommandsHandlerSession(Socket socket) {
         this.socket = socket;
     }
@@ -30,12 +29,17 @@ public class CommandsHandlerSession implements Runnable {
             System.out.println("Received: " + messageReceived);
 
             JsonObject messageToSend = executeCommand(messageReceived);
-            if (gson.fromJson(messageToSend.get("response"), String.class).equals("EXIT")) {
+            //handling the special case of the exit request
+            if (messageToSend.get("response").getAsString().equals("EXIT")) {
                 messageToSend.addProperty("response", "OK");
                 output.writeUTF(gson.toJson(messageToSend));
                 System.out.println("Sent: " + gson.toJson(messageToSend));
                 Main.serverRunning = false;
-                Main.server.close();
+                /*
+                The serverSocket has to be closed from here because it is being blocked..
+                blocked on server.accept() call and the recommended way to pass the blocking call..
+                 is to stop what is calling it */
+                Main.serverSocket.close();
 
             } else {
                 output.writeUTF(gson.toJson(messageToSend));
@@ -47,12 +51,16 @@ public class CommandsHandlerSession implements Runnable {
         }
     }
 
+    /* This method parses the request and delegates it to the JSONDatabase where the database
+    and the implementation for methods are. Then, it creates the result message to be sent for
+    the client responsible for making the request. */
     static JsonObject executeCommand(String JSONRequest) {
         JsonObject request = JsonParser.parseString(JSONRequest).getAsJsonObject();
         JsonObject result = new JsonObject();
 
         String command = request.get("type").getAsString();
         JsonElement key = request.get("key");
+        //handling the special case of exit
         if (command.equals("exit")) {
             result.addProperty("response", "EXIT");
             return result;
@@ -65,7 +73,6 @@ public class CommandsHandlerSession implements Runnable {
                 result.addProperty("response", "OK");
                 break;
             case "get":
-                System.out.println(0);
                 JsonElement value = JSONDatabase.get(key);
                 if (value == null) {
                     result.addProperty("response", "ERROR");

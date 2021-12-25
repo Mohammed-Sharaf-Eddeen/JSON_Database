@@ -14,21 +14,19 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class JSONDatabase {
     private static final String DATABASE_PATH  = System.getProperty("user.dir") + "\\src\\server\\data\\db.json";
     private static final Gson gson = new Gson();
-    static JsonObject database;
+    private static JsonObject database;
     private static final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private static final Lock readLock = readWriteLock.readLock();
     private static final Lock writeLock = readWriteLock.writeLock();
 
 
+    //read the database from the file
     private static void readDatabase() {
-        System.out.println(111);
         readLock.lock();
-        System.out.println(222);
         try {
             byte[] databaseBytes = Files.readAllBytes(Path.of(DATABASE_PATH));
             String databaseString = new String(databaseBytes);
             database = JsonParser.parseString(databaseString).getAsJsonObject();
-            System.out.println(333);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,15 +35,20 @@ public class JSONDatabase {
         }
     }
 
+    //write to the database file
     private static void writeToDatabase() {
+        writeLock.lock();
         String databaseJsonString = gson.toJson(database);
         try (FileWriter writer = new FileWriter(DATABASE_PATH)) {
             writer.write(databaseJsonString);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            writeLock.unlock();
         }
     }
 
+    //set function calls setForKeyArray inside it.
     public static void set(JsonElement key, JsonElement newValue) {
         writeLock.lock();
         readDatabase();
@@ -78,10 +81,9 @@ public class JSONDatabase {
         }
     }
 
+    //get function calls getForKeyArray inside it.
     public static JsonElement get(JsonElement key) {
-        System.out.println("1");
         readDatabase();
-        System.out.println("22");
         if (key.isJsonPrimitive()) {
             String keyString = key.getAsString();
             if (database.has(keyString)) {
@@ -97,7 +99,6 @@ public class JSONDatabase {
     private static JsonElement getForKeyArray(JsonArray request, JsonObject database) {
         String key = request.get(0).getAsString();
         request.remove(0);
-        System.out.println(3);
 
         if (database.has(key)) {
             JsonElement element = database.get(key);
@@ -111,6 +112,17 @@ public class JSONDatabase {
             }
         }
         return null;
+    }
+
+    //delete function calls deleteWithoutLock which calls deleteWithoutLockForKeyArray inside it
+    //delete function is implemented to add the writeLock functionality easily
+    public static boolean delete(JsonElement key) {
+        writeLock.lock();
+        readDatabase();
+        boolean deleted = deleteWithoutLock(key);
+        writeToDatabase();
+        writeLock.unlock();
+        return deleted;
     }
 
     private static boolean deleteWithoutLock(JsonElement key) {
@@ -148,16 +160,6 @@ public class JSONDatabase {
         }
     }
 
-    //delete function calls deleteWithoutLock which calls deleteWithoutLockForKeyArray inside it
-    //delete function is implemented to add the writeLock functionality easily
-    public static boolean delete(JsonElement key) {
-        writeLock.lock();
-        readDatabase();
-        boolean deleted = deleteWithoutLock(key);
-        writeToDatabase();
-        writeLock.unlock();
-        return deleted;
-    }
 
 
 
