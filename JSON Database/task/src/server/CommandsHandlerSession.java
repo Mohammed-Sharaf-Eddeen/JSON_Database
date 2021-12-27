@@ -34,12 +34,7 @@ public class CommandsHandlerSession implements Runnable {
                 messageToSend.addProperty("response", "OK");
                 output.writeUTF(gson.toJson(messageToSend));
                 System.out.println("Sent: " + gson.toJson(messageToSend));
-                Main.serverRunning = false;
-                /*
-                The serverSocket has to be closed from here because it is being blocked..
-                blocked on server.accept() call and the recommended way to pass the blocking call..
-                 is to stop what is calling it */
-                Main.serverSocket.close();
+                Main.close();
 
             } else {
                 output.writeUTF(gson.toJson(messageToSend));
